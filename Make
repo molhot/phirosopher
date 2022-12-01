@@ -1,0 +1,24 @@
+NAME = philosophers.a
+
+SRCS = 
+
+OBJS = $(SRCS:.c=.o)
+
+CC = gcc 
+
+CFLAGS = -Wall -Wextra -Werror -I includes
+
+all: $(NAME)
+
+$(NAME):$(OBJS)
+	ar -rc $(NAME) $(OBJS)
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f all
+
+re: fclean all
+
+.PHONY:			all clean fclean re bonus
