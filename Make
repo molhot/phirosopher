@@ -1,6 +1,7 @@
 NAME = philosophers.a
 
-SRCS = 
+SRCS = basicfunc/ft_atoi show_error/error_shorterargc\
+		main
 
 OBJS = $(SRCS:.c=.o)
 

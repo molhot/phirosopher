@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 12:28:58 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/09 20:33:26 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@
 # define ERROR_MALLOC 2
 
 typedef struct philo_info{
-	int number_of_philo;
-    int time_to_die;
-	int time_to_eat;
-	int time_tosleep;
+	size_t	number_of_philo;
+    int		time_to_die;
+	int		time_to_eat;
+	int		time_tosleep;
 }philo_t;
 
 # include <string.h>
@@ -52,7 +52,8 @@ typedef struct philo_info{
 # include <stddef.h>
 # include <stdbool.h>
 
-void	print_errormessage(int errornum);
+int		print_errormessage(int errornum);
 int		ft_atoi(const char *str);
+
 
 #endif

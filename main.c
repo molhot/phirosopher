@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:01:14 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 12:37:00 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/09 20:19:52 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void insert_philoinfo_to_struct(philo_t* sub_t, char *argv[])
 	return (sub_t);
 }
 
-static void philo_func()
+static void philo_func(void)
 {
 
 }
@@ -32,22 +32,17 @@ int main(int argc, char *argv[])
 	philo_t		*philoinfo;
 	size_t		philonum;
 	pthread_t	handle;
+	int			judge;
 
+	judge = 0;
 	if (argc < 5)
-	{
-		print_errormessage(ERROR_ARGUMENTNUM);
-		return (1);
-	}
+		judge = print_errormessage(ERROR_ARGUMENTNUM);
 	philoinfo = (philo_t *)malloc(sizeof(philo_t) * 1);
 	if (philoinfo == NULL)
-	{
-		print_errormessage(ERROR_MALLOC);
-		return (1);
-	}
+		judge = print_errormessage(ERROR_MALLOC);
 	insert_philoinfo_to_struct(philoinfo, argv);
-	philonum = philoinfo->number_of_philo;
-	while (philonum != 0)
-	{
-		pthread_create(&handle, NULL, philo_func, );
-	}
+	philonum = philoinfo->number_of_philo + 1;
+	while (philonum-- != 0 && judge == 0)
+		pthread_create(&handle, NULL, philo_func, NULL);
+	
 }
