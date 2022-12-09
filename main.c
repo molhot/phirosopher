@@ -6,7 +6,7 @@
 /*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:01:14 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 20:19:52 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/09 23:42:12 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,11 @@ static void insert_philoinfo_to_struct(philo_t* sub_t, char *argv[])
 	return (sub_t);
 }
 
-static void philo_func(void)
-{
-
-}
-
 int main(int argc, char *argv[])
 {
 	philo_t		*philoinfo;
 	size_t		philonum;
-	pthread_t	handle;
+	pthread_t	*handle;
 	int			judge;
 
 	judge = 0;
@@ -44,5 +39,7 @@ int main(int argc, char *argv[])
 	philonum = philoinfo->number_of_philo + 1;
 	while (philonum-- != 0 && judge == 0)
 		pthread_create(&handle, NULL, philo_func, NULL);
-	
+	while (philonum++ != philoinfo->number_of_philo + 1)
+		pthread_join()
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 20:33:26 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/09 21:26:32 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct philo_info{
 
 int		print_errormessage(int errornum);
 int		ft_atoi(const char *str);
-
+size_t	grasp_charlen(char *sentence);
+void	ft_putchar_fd(char *error_sentence);
 
 #endif
