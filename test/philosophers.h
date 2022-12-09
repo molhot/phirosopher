@@ -6,7 +6,7 @@
 /*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 10:44:09 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:11:04 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,9 @@
 // # define time_to_sleep 20
 // #endif
 
-# define ERROR_ARGUMENTNUM 1
-
-typedef struct philo_info{
-	int number_of_philo;
-    int time_to_die;
-	int time_to_eat;
-	int time_tosleep;
-}philo_t;
+typedef struct some{
+    char test;
+}test_t;
 
 # include <string.h>
 # include <stdlib.h>
