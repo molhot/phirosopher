@@ -5,14 +5,12 @@
 void *doSomething(void* pArg) {
     int *pVal = (int*) pArg;
     printf("worker thread [%d]\n", *pVal);
-    *pVal = 200;
 }
 
 // 新しいスレッドで実行されるタスク
 void *doSomething2(void* pArg) {
     int *pVal = (int*) pArg;
     printf("worker thread [%d]\n", *pVal);
-    *pVal = 200;
 }
 
 int main() {

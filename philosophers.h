@@ -6,7 +6,7 @@
 /*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 10:44:09 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/09 12:28:58 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 // #endif
 
 # define ERROR_ARGUMENTNUM 1
+# define ERROR_MALLOC 2
 
 typedef struct philo_info{
 	int number_of_philo;
@@ -49,5 +50,9 @@ typedef struct philo_info{
 # include <unistd.h>
 # include <stdio.h>
 # include <stddef.h>
+# include <stdbool.h>
+
+void	print_errormessage(int errornum);
+int		ft_atoi(const char *str);
 
 #endif

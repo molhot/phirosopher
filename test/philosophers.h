@@ -6,7 +6,7 @@
 /*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/08 15:11:04 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/09 12:29:14 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ typedef struct some{
 # include <unistd.h>
 # include <stdio.h>
 # include <stddef.h>
+# include <stdbool.h>
 
 #endif
