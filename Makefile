@@ -1,7 +1,8 @@
 NAME = philosophers.a
 
-SRCS = basicfunc/ft_atoi show_error/error_shorterargc\
-		main
+SRCS = basic_func/ft_atoi.c basic_func/ft_graspcharlen.c basic_func/ft_putchar_fd.c show_error/showerror.c\
+		philosophers_action/philo_behavior.c philosophers_action/philo_fork.c philosophers_action/philo_think_eat.c\
+		philo_main.c
 
 OBJS = $(SRCS:.c=.o)
 

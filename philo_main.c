@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:01:14 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 23:42:12 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/10 07:16:04 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ static void insert_philoinfo_to_struct(philo_t* sub_t, char *argv[])
 	sub_t->time_to_die = ft_atoi(argv[2]);
 	sub_t->time_to_eat = ft_atoi(argv[3]);
 	sub_t->time_tosleep = ft_atoi(argv[4]);
-
-	return (sub_t);
 }
 
 int main(int argc, char *argv[])
 {
 	philo_t		*philoinfo;
-	size_t		philonum;
 	pthread_t	*handle;
+
 	int			judge;
 
 	judge = 0;
@@ -36,10 +34,11 @@ int main(int argc, char *argv[])
 	if (philoinfo == NULL)
 		judge = print_errormessage(ERROR_MALLOC);
 	insert_philoinfo_to_struct(philoinfo, argv);
-	philonum = philoinfo->number_of_philo + 1;
-	while (philonum-- != 0 && judge == 0)
-		pthread_create(&handle, NULL, philo_func, NULL);
-	while (philonum++ != philoinfo->number_of_philo + 1)
-		pthread_join()
+	handle = (pthread_t *)malloc(sizeof(pthread_t) * philoinfo->number_of_philo);
+	if (handle == NULL)
+		judge = print_errormessage(ERROR_MALLOC);
+	if (judge != 0)
+		return (1);
+	philo_life(philoinfo, );
 	return (0);
 }

@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_fork.c                                       :+:      :+:    :+:   */
+/*   philo_life.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 02:15:23 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/10 03:16:44 by satushi          ###   ########.fr       */
+/*   Created: 2022/12/10 07:14:07 by satushi           #+#    #+#             */
+/*   Updated: 2022/12/10 07:14:55 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philosophers.h"
+#include "philosophers.h"
 
-void take_first_fork()
+void philo_life()
 {
-    return ;
+    
 }
-
-void take_second_fork()
-{
-    return ;
-}
-

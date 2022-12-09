@@ -6,7 +6,7 @@
 /*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 21:26:32 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/10 07:11:01 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@
 # define ERROR_ARGUMENTNUM 1
 # define ERROR_MALLOC 2
 
+# include <string.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <signal.h>
+# include <sys/types.h>
+# include <stddef.h>
+# include <stdbool.h>
+#include <pthread.h>
+
 typedef struct philo_info{
 	size_t	number_of_philo;
     int		time_to_die;
@@ -39,22 +50,20 @@ typedef struct philo_info{
 	int		time_tosleep;
 }philo_t;
 
-# include <string.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <signal.h>
-# include <sys/types.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stddef.h>
-# include <stdbool.h>
+typedef struct all_info{
+	pthread_mutex_t fork_l_mutex;
+	pthread_mutex_t fork_r_mutex;
+	pthread_mutex_t eat_mutex;
+	philo_t			philoinfo;
+}philo_allinfo_t;
 
 int		print_errormessage(int errornum);
 int		ft_atoi(const char *str);
 size_t	grasp_charlen(char *sentence);
 void	ft_putchar_fd(char *error_sentence);
+void	*philo_func();
+void	eat(int eat_time);
+void	think(int think_time);
+void	sleeping(int sleeping_time);
 
 #endif

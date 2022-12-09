@@ -6,7 +6,7 @@
 /*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 01:59:29 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/10 02:15:11 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/10 02:47:02 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void think(int think_time)
     usleep(think_time);
 }
 
-void sleep(int sleeping_time)
+void sleeping(int sleeping_time)
 {
     usleep(sleeping_time);
 }

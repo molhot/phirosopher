@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: satushi <satushi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:08:46 by satushi           #+#    #+#             */
-/*   Updated: 2022/12/09 12:09:51 by satushi          ###   ########.fr       */
+/*   Updated: 2022/12/10 02:47:52 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	ft_atoi(const char *str)
 {
 	int		plus_or_minus;
 	int		counter;
-	long	number_row;
 
 	counter = 0;
 	plus_or_minus = 0;
