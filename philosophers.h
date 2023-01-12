@@ -6,7 +6,7 @@
 /*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/11 22:35:11 by satushi          ###   ########.fr       */
+/*   Updated: 2023/01/12 22:21:34 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ typedef struct all_info{
 	pthread_mutex_t	write;
 	long long		start_time;
 	t_philo			*philoinfo;
+	pthread_t		checkthread;
 	int				philo_num;
 	int				time_to_eat;
 	int				time_to_sleep;
+	int				time_to_think;
 	int				eat_limit;
 	int				time_to_die;
 	int				thread_num;
@@ -75,10 +77,12 @@ int		print_errormessage(int errornum);
 int		ft_atoi(const char *str);
 size_t	grasp_charlen(char *sentence);
 void	ft_putchar_fd(char *error_sentence);
-void	eat(int eat_time);
-void	think(int think_time);
-void	sleeping(int sleeping_time);
+bool	eat_drop(t_allinfo *info, int l_f, int r_f, int i);
+bool	think(t_allinfo *info, int pn);
+bool	sleeping(t_allinfo *info, int pn);
 bool	arg_check(int argnum, char **arg);
 void	*philo_func(void *info);
+bool	print_action(t_allinfo *info, int ph_num, char *action);
+void	*philo_checker();
 
 #endif

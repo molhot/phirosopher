@@ -1,22 +1,23 @@
-NAME = philosophers.a
+NAME = philosophers
 
-SRCS = basic_func/ft_atoi.c basic_func/ft_graspcharlen.c basic_func/ft_putchar_fd.c show_error/showerror.c\
+SRCS = basic_func/ft_atoi.c basic_func/print_action.c\
 		philosophers_action/philo_behavior.c philosophers_action/philo_fork.c philosophers_action/philo_think_eat.c\
-		philo_main.c
+		arg_checker.c checker.c philo_main.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc 
 
-CFLAGS = -Wall -Wextra -Werror -I includes
+CFLAGS = -Wall -Wextra -Werror -I includes -pthread
 
 all: $(NAME)
 
 $(NAME):$(OBJS)
-	ar -rc $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
+	rm -f $(NAME)
 
 fclean: clean
 	rm -f all
