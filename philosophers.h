@@ -6,7 +6,7 @@
 /*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/12 22:21:34 by satushi          ###   ########.fr       */
+/*   Updated: 2023/01/18 21:40:17 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # include <stddef.h>
 # include <stdbool.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef	struct s_fork{
 	int	l_fork;
@@ -50,11 +51,11 @@ typedef	struct s_fork{
 }t_fork;
 
 typedef struct philo_info{
-	size_t		number_of_philo;
-	size_t		how_eated;
-	pthread_t	philo_thread;
-	t_fork		fork_info;
-	int			time_to_die;
+	size_t			number_of_philo;
+	size_t			how_eated;
+	pthread_t		philo_thread;
+	t_fork			fork_info;
+	long	long	time_to_die;
 }t_philo;
 
 typedef struct all_info{
@@ -73,16 +74,19 @@ typedef struct all_info{
 	bool			philo_die_ornot;
 }t_allinfo;
 
-int		print_errormessage(int errornum);
-int		ft_atoi(const char *str);
-size_t	grasp_charlen(char *sentence);
-void	ft_putchar_fd(char *error_sentence);
-bool	eat_drop(t_allinfo *info, int l_f, int r_f, int i);
-bool	think(t_allinfo *info, int pn);
-bool	sleeping(t_allinfo *info, int pn);
-bool	arg_check(int argnum, char **arg);
-void	*philo_func(void *info);
-bool	print_action(t_allinfo *info, int ph_num, char *action);
-void	*philo_checker();
+int				print_errormessage(int errornum);
+int				ft_atoi(const char *str);
+size_t			grasp_charlen(char *sentence);
+void			ft_putchar_fd(char *error_sentence);
+bool			think(t_allinfo *info, int pn);
+bool			sleeping(t_allinfo *info, int pn);
+bool			arg_check(int argnum, char **arg);
+void			*philo_func(void *info);
+bool			print_action(t_allinfo *info, int ph_num, char *action);
+void			*philo_checker();
+long	long	get_time();
+long	long	passing_time(long long time);
+bool			eat_drop_add(t_allinfo *info, int l_f, int r_f, int i);
+bool			eat_drop_even(t_allinfo *info, int l_f, int r_f, int i);
 
 #endif

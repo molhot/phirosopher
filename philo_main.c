@@ -6,7 +6,7 @@
 /*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:01:14 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/12 21:40:01 by satushi          ###   ########.fr       */
+/*   Updated: 2023/01/18 20:46:35 by satushi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static	void	ready_philoinfo(t_allinfo *info, int argc, char **argv)
 		info->eat_limit = ft_atoi(argv[5]);
 	else
 		info->eat_limit = -1;
+	info->start_time = get_time();
 }
 
 static	bool	create_samephilo(t_allinfo *info)
