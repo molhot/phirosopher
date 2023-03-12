@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/18 21:40:17 by satushi          ###   ########.fr       */
+/*   Updated: 2023/03/11 21:46:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct all_info{
 	int				eat_limit;
 	int				time_to_die;
 	int				thread_num;
+	struct timeval	action_opened;
+	struct timeval	action_ended;	
 	bool			philo_die_ornot;
 }t_allinfo;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_think_eat.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 01:59:29 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/18 21:33:15 by satushi          ###   ########.fr       */
+/*   Updated: 2023/03/11 20:32:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ bool	think(t_allinfo *info, int pn)
 {
     if (print_action(info, pn, "thinking now ...mmm") == false)
 		return (false);
+	usleep(1000 * (long long)info->time_to_think);
 	return (true);
 }
 
