@@ -3,61 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   philo_behavior.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 02:34:43 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/18 21:40:34 by satushi          ###   ########.fr       */
+/*   Updated: 2023/03/14 20:04:20 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../philosophers.h"
 
-bool	limited_philolife(t_allinfo *info, int pn)
+void	*limited_philolife_add(void *info_t)
 {
-	if (eat_drop_even(info, info->philoinfo[pn].fork_info.l_fork, info->philoinfo[pn].fork_info.r_fork, pn) == false)
-		return (false);
-	if (info->eat_limit != (int)info->philoinfo[pn].how_eated)
+	t_philo		*info;
+
+	info = (t_philo*)info_t;
+	while ((int)info->how_eated != info->eat_limit)
 	{
-		if (sleeping(info, pn) == false)
-			return (false);
-		if (think(info, pn) == false)
-			return (false);
+		if (eat_drop_even(info, info->fork_info.l_fork, info->fork_info.r_fork) == false)
+			return (NULL);
+		if (info->eat_limit > (int)info->how_eated)
+		{
+			if (sleeping(info) == false)
+				return (NULL);
+			if (think(info) == false)
+				return (NULL);
+		}
 	}
-	return (true);
+	if ((int)info->how_eated == info->eat_limit)
+		info->correctend = true;
+	return (NULL);
 }
 
-bool	no_limited_philolife(t_allinfo *info, int pn)
+void	*limited_philolife_even(void *info_t)
 {
-	if (eat_drop_even(info, info->philoinfo[pn].fork_info.l_fork, info->philoinfo[pn].fork_info.r_fork, pn) == false)
-		return (false);
-	if (sleeping(info, pn) == false)
-		return (false);
-	if (think(info, pn) == false)
-		return (false);
-	return (true);
+	t_philo		*info;
+
+	info = (t_philo*)info_t;
+	while ((int)info->how_eated != info->eat_limit)
+	{
+		if (eat_drop_even(info, info->fork_info.l_fork, info->fork_info.r_fork) == false)
+			return (NULL);
+		if (info->eat_limit > (int)info->how_eated)
+		{
+			if (sleeping(info) == false)
+				return (NULL);
+			if (think(info) == false)
+				return (NULL);
+		}
+	}
+	if ((int)info->how_eated == info->eat_limit)
+		info->correctend = true;
+	return (NULL);
 }
 
-void	*philo_func(void *info)
-{
-	t_allinfo	*info_t;
-	int			pn;
-
-	info_t = (t_allinfo *)info;
-	pn = info_t->thread_num;
-	if (info_t->eat_limit > 0)
-	{
-		while ((int)info_t->philoinfo[pn].how_eated != info_t->eat_limit && info_t->philo_die_ornot != true)
-			limited_philolife(info_t, pn);
-		if (info_t->philo_die_ornot == true)
-			printf("philo is dead\n");
-	}
-	else
-	{
-		while (info_t->philo_die_ornot != true)
-			no_limited_philolife(info_t, pn);
-		if (info_t->philo_die_ornot == true)
-			printf("philo is dead\n");
-	}
-	printf("philo func ended\n");
-    return (NULL);
-}

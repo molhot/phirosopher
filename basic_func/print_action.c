@@ -3,25 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   print_action.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:21:51 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/12 12:29:55 by satushi          ###   ########.fr       */
+/*   Updated: 2023/03/14 18:16:59 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-bool	print_action(t_allinfo *info, int ph_num, char *action)
+bool	print_action(t_philo *info, char *action)
 {
-	pthread_mutex_lock(&info->write);
-	if (info->philo_die_ornot == true)
+	long long	time;
+
+	if (info->all_info->philo_die_ornot == true)
+		return (false);
+	time = getnowtime();
+	pthread_mutex_lock(&info->all_info->write);
+	if (info->all_info->philo_die_ornot == true)
 	{
-		printf("philo is dead");
-		pthread_mutex_unlock(&info->write);
+		pthread_mutex_unlock(&info->all_info->write);
 		return (false);
 	}
-	printf("%d's philo is take {%s}\n", ph_num, action);
-	pthread_mutex_unlock(&info->write);
+	printf("%lld %ld %s\n", time, info->number_of_philo, action);
+	pthread_mutex_unlock(&info->all_info->write);
 	return (true);
 }

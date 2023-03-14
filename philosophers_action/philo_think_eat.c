@@ -3,77 +3,93 @@
 /*                                                        :::      ::::::::   */
 /*   philo_think_eat.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 01:59:29 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/11 20:32:36 by user             ###   ########.fr       */
+/*   Updated: 2023/03/14 19:45:04 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../philosophers.h"
 
-bool	eat_drop_add(t_allinfo *info, int l_f, int r_f, int i)
+bool	eat_drop_add(t_philo *info, int l_f, int r_f)
 {
-	if (pthread_mutex_lock(&info->forks[r_f]) != 0)
+	if (pthread_mutex_lock(&info->all_info->forks[l_f]) != 0)
 		return (false);
-	if (print_action(info, i, "take right chopstic") == false)
+	if (print_action(info, "has taken a fork") == false)
+	{
+		pthread_mutex_unlock(&info->all_info->forks[l_f]);
 		return (false);
-	if (pthread_mutex_lock(&info->forks[l_f]) != 0)
+	}
+	if (pthread_mutex_lock(&info->all_info->forks[r_f]) != 0)
 		return (false);
-	if (print_action(info, i, "take left chopstic") == false)
+	if (print_action(info, "has taken a fork") == false)
+	{
+		pthread_mutex_unlock(&info->all_info->forks[r_f]);
+		pthread_mutex_unlock(&info->all_info->forks[l_f]);
 		return (false);
-	if (print_action(info, i, "eating now, mogumogu okayu~~~") == false)
+	}
+	if (print_action(info, "is eating") == false)
+	{
+		pthread_mutex_unlock(&info->all_info->forks[r_f]);
+		pthread_mutex_unlock(&info->all_info->forks[l_f]);
 		return (false);
-	usleep(1000 * (long long)info->time_to_eat);
-	info->philoinfo[i].how_eated++;
-	printf("%d's eat count is >%ld\n",i, info->philoinfo[i].how_eated);
-	pthread_mutex_unlock(&info->forks[l_f]);
-	if (print_action(info, i, "droped left fork") == false)
-		return (false);
-	pthread_mutex_unlock(&info->forks[r_f]);
-	if (print_action(info, i, "droped right fork") == false)
-		return (false);
+	}
+	usleep(1000 * (long long)info->all_info->time_to_eat);
+	pthread_mutex_unlock(&info->all_info->forks[r_f]);
+	pthread_mutex_unlock(&info->all_info->forks[l_f]);
+	info->how_eated++;
+	info->philo_livedstart = getnowtime();
 	return (true);
 }
 
-bool	eat_drop_even(t_allinfo *info, int l_f, int r_f, int i)
+bool	eat_drop_even(t_philo *info, int l_f, int r_f)
 {
-	if (i % 2 == 0)
-		return (eat_drop_add(info, l_f, r_f, i));
-    if (pthread_mutex_lock(&info->forks[l_f]) != 0)
+	if (pthread_mutex_lock(&info->all_info->forks[l_f]) != 0)
 		return (false);
-	if (print_action(info, i, "take left chopstic") == false)
+	if (print_action(info, "has taken a fork") == false)
+	{
+		pthread_mutex_unlock(&info->all_info->forks[l_f]);
 		return (false);
-	if (pthread_mutex_lock(&info->forks[r_f]) != 0)
+	}
+	if (pthread_mutex_lock(&info->all_info->forks[r_f]) != 0)
 		return (false);
-	if (print_action(info, i, "take right chopstic") == false)
+	if (print_action(info, "has taken a fork") == false)
+	{
+		pthread_mutex_unlock(&info->all_info->forks[r_f]);
+		pthread_mutex_unlock(&info->all_info->forks[l_f]);
 		return (false);
-	if (print_action(info, i, "eating now, mogumogu okayu~~~") == false)
+	}
+	if (print_action(info, "is eating") == false)
+	{
+		pthread_mutex_unlock(&info->all_info->forks[r_f]);
+		pthread_mutex_unlock(&info->all_info->forks[l_f]);
 		return (false);
-	usleep(1000 * (long long)info->time_to_eat);
-	info->philoinfo[i].how_eated++;
-	printf("%d's eat count is >%ld\n",i, info->philoinfo[i].how_eated);
-	pthread_mutex_unlock(&info->forks[l_f]);
-	if (print_action(info, i, "droped left fork") == false)
-		return (false);
-	pthread_mutex_unlock(&info->forks[r_f]);
-	if (print_action(info, i, "droped right fork") == false)
-		return (false);
+	}
+	usleep(1000 * (long long)info->all_info->time_to_eat);
+	pthread_mutex_unlock(&info->all_info->forks[r_f]);
+	pthread_mutex_unlock(&info->all_info->forks[l_f]);
+	info->how_eated++;
+	info->philo_livedstart = getnowtime();
 	return (true);
 }
 
-bool	think(t_allinfo *info, int pn)
+bool	think(t_philo *info)
 {
-    if (print_action(info, pn, "thinking now ...mmm") == false)
+	if (info->all_info->philo_die_ornot == true)
 		return (false);
-	usleep(1000 * (long long)info->time_to_think);
+    if (print_action(info, "is thinking") == false)
+		return (false);
+	usleep(1000 * info->all_info->time_to_think);
 	return (true);
 }
 
-bool	sleeping(t_allinfo *info, int pn)
+bool	sleeping(t_philo *info)
 {
-    if (print_action(info, pn, "sleeping now ...zzZZ") == false)
+	if (info->all_info->philo_die_ornot == true)
 		return (false);
-	usleep(1000 * (long long)info->time_to_sleep);
+	if (print_action(info, "is sleeping") == false)
+		return (false);
+	usleep(1000 * info->all_info->time_to_sleep);
 	return (true);
 }
