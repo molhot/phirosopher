@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/14 19:49:29 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/14 20:51:54 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct philo_info t_philo;
 
 typedef struct all_info{
 	pthread_mutex_t	*forks;
+	pthread_mutex_t *status;
 	pthread_mutex_t	write;
-	pthread_mutex_t thread;
 	t_philo			*philoinfo;
 	pthread_t		checkthread;
 	int				philo_num;
@@ -56,7 +56,6 @@ typedef struct all_info{
 	int				time_to_think;
 	int				time_to_die;
 	int				eat_limit;
-	int				thread_num;	
 	bool			philo_die_ornot;
 }t_allinfo;
 
@@ -76,11 +75,14 @@ typedef struct philo_info{
 int				main(int argc, char *argv[]);
 /*---------------------------------------------------------*/
 
+/************************basicfunc**************************/
+void			*philolife_life(void *info_t);
+/*---------------------------------------------------------*/
+
 /*************************actions*******************************/
 bool			think(t_philo *info);
 bool			sleeping(t_philo *info);
-bool			eat_drop_add(t_philo *info, int l_f, int r_f);
-bool			eat_drop_even(t_philo *info, int l_f, int r_f);
+bool			eat_drop(t_philo *info, int l_f, int r_f);
 /*-------------------------------------------------------------*/
 
 /************************basicfunc**************************/

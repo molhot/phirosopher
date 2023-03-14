@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:38:57 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/14 17:26:35 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/14 20:42:36 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*philo_checker(t_allinfo *info)
 				countup++;
 				(info->philoinfo)[philo_num].correctend = true;
 			}
-			if ((int)countup == info->philo_num - 1)
+			if ((int)countup == info->philo_num)
 				break ;
 		}
 		if ((info->philoinfo)[philo_num].correctend == false)
@@ -55,7 +55,6 @@ void	*philo_checker(t_allinfo *info)
 		philo_num++;
 		if ((int)philo_num == info->philo_num)
 			philo_num = 0;
-		usleep(200);
 	}
 	return (NULL);
 }

@@ -16,8 +16,6 @@ bool	mutexinit(t_allinfo *allinfo)
 {
 	if (pthread_mutex_init(&(allinfo->write), NULL) != 0)
 		return (false);
-	if (pthread_mutex_init(&(allinfo->write), NULL) != 0)
-		return (false);
 	return (true);
 }
 
@@ -26,7 +24,10 @@ bool	create_forks(t_allinfo *info)
 	int	fork_num;
 
 	info->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->philo_num);
+	info->status = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->philo_num);
 	if (info->forks == NULL)
+		return (false);
+	if (info->status == NULL)
 		return (false);
 	fork_num = 0;
 	while (fork_num != info->philo_num)

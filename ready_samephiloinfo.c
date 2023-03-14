@@ -33,13 +33,6 @@ bool	create_samephilo(t_allinfo *info)
 		return (false);
 	while (l_f_n != info->philo_num + 1)
 	{
-		// ((info->philoinfo)[l_f_n - 1]).fork_info.r_fork = l_f_n - 2;
-		// ((info->philoinfo)[l_f_n - 1]).fork_info.l_fork = l_f_n - 1;
-		// ((info->philoinfo)[l_f_n - 1]).how_eated = 0;
-		// ((info->philoinfo)[l_f_n - 1]).number_of_philo = l_f_n;
-		// ((info->philoinfo)[l_f_n - 1]).correctend = false;
-		// ((info->philoinfo)[l_f_n - 1]).eat_limit = info->eat_limit;
-		// ((info->philoinfo)[l_f_n - 1]).all_info = info;
 		insert_info_tophilo(l_f_n, info);
 		l_f_n++;
 	}
