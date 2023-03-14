@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/14 20:51:54 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/14 21:21:18 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct philo_info t_philo;
 
 typedef struct all_info{
 	pthread_mutex_t	*forks;
-	pthread_mutex_t *status;
+	pthread_mutex_t	*status;
 	pthread_mutex_t	write;
 	t_philo			*philoinfo;
 	pthread_t		checkthread;

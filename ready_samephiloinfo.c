@@ -21,6 +21,7 @@ static void	insert_info_tophilo(int	philonum, t_allinfo *info)
 	((info->philoinfo)[philonum - 1]).correctend = false;
 	((info->philoinfo)[philonum - 1]).eat_limit = info->eat_limit;
 	((info->philoinfo)[philonum - 1]).all_info = info;
+	//pthread_mutex_init(&(((info->philoinfo)[philonum - 1]).status), NULL);
 }
 
 bool	create_samephilo(t_allinfo *info)
@@ -44,5 +45,6 @@ bool	create_samephilo(t_allinfo *info)
 	((info->philoinfo)[0]).correctend = false;
 	((info->philoinfo)[0]).eat_limit = info->eat_limit;
 	((info->philoinfo)[0]).all_info = info;
+	//pthread_mutex_init(&(((info->philoinfo)[0]).status), NULL);
 	return (true);
 }

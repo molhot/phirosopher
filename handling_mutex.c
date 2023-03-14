@@ -25,14 +25,14 @@ bool	create_forks(t_allinfo *info)
 
 	info->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->philo_num);
 	info->status = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->philo_num);
-	if (info->forks == NULL)
-		return (false);
-	if (info->status == NULL)
+	if (info->forks == NULL || info->status == NULL)
 		return (false);
 	fork_num = 0;
 	while (fork_num != info->philo_num)
 	{
 		if (pthread_mutex_init(&info->forks[fork_num], NULL) != 0)
+			return (false);
+		if (pthread_mutex_init(&info->status[fork_num], NULL) != 0)
 			return (false);
 		fork_num++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 01:59:29 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/14 20:49:02 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/14 21:39:41 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,20 @@ bool	eat_drop(t_philo *info, int l_f, int r_f)
 	usleep(1000 * (long long)info->all_info->time_to_eat);
 	pthread_mutex_unlock(&info->all_info->forks[r_f]);
 	pthread_mutex_unlock(&info->all_info->forks[l_f]);
-	pthread_mutex_lock(&(info->thread));
+	if (l_f - r_f != 1)
+	{
+		pthread_mutex_lock(&(info->all_info->status[r_f]));
 		info->how_eated = info->how_eated + 1;
 		info->philo_livedstart = getnowtime();
-	pthread_mutex_unlock(&(info->thread));
+		pthread_mutex_unlock(&(info->all_info->status[r_f]));
+	}
+	else
+	{
+		pthread_mutex_lock(&(info->all_info->status[l_f]));
+		info->how_eated = info->how_eated + 1;
+		info->philo_livedstart = getnowtime();
+		pthread_mutex_unlock(&(info->all_info->status[l_f]));
+	}
 	return (true);
 }
 

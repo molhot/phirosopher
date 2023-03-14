@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 02:34:43 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/14 20:39:25 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/14 22:05:30 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	*philolife_life(void *info_t)
 			if (think(info) == false)
 				return (NULL);
 		}
+		if (info->eat_limit == (int)info->how_eated)
+			break ;
 	}
 	return (NULL);
 }

@@ -33,11 +33,11 @@ int main(int argc, char *argv[])
 	if (arg_check(argc, argv) == false)
 		return (1);
 	ready_philoinfo(&allinfo, argc, argv);
-	if (create_samephilo(&allinfo) == false)
-		return (1);
 	if (mutexinit(&allinfo) == false)
 		return (1);
 	if (create_forks(&allinfo) == false)
+		return (1);
+	if (create_samephilo(&allinfo) == false)
 		return (1);
 	allinfo.philo_die_ornot = false;
 	if (create_threads(&allinfo) == false)
