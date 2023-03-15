@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 22:57:45 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/14 21:21:18 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/15 19:36:28 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct all_info{
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*status;
 	pthread_mutex_t	write;
+	pthread_mutex_t	timecheck;
 	t_philo			*philoinfo;
 	pthread_t		checkthread;
 	int				philo_num;
@@ -75,8 +76,9 @@ typedef struct philo_info{
 int				main(int argc, char *argv[]);
 /*---------------------------------------------------------*/
 
-/************************basicfunc**************************/
+/***********************philo'slife*************************/
 void			*philolife_life(void *info_t);
+void			*philolife_life_ult(void *info_t);
 /*---------------------------------------------------------*/
 
 /*************************actions*******************************/
@@ -108,6 +110,7 @@ bool			create_forks(t_allinfo *info);
 int				destroy_threads(t_allinfo *main);
 bool			create_forks(t_allinfo *info);
 bool			create_threads(t_allinfo *info);
+bool			create_threads_ult(t_allinfo *info);
 /*---------------------------------------------------------*/
 
 /**********************readyphiloinfo***********************/

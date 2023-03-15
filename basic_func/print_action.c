@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:21:51 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/14 18:16:59 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/15 13:29:22 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ bool	print_action(t_philo *info, char *action)
 
 	if (info->all_info->philo_die_ornot == true)
 		return (false);
-	time = getnowtime();
 	pthread_mutex_lock(&info->all_info->write);
+	time = getnowtime();
 	if (info->all_info->philo_die_ornot == true)
 	{
 		pthread_mutex_unlock(&info->all_info->write);

@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:38:57 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/14 20:42:36 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/15 19:37:55 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	philo_deathistrue(size_t philo_num, t_allinfo *info)
 {
+	pthread_mutex_lock(&(info->timecheck));
 	if ((getnowtime() - info->philoinfo[philo_num].philo_livedstart) > info->time_to_die)
 	{
 		if (print_action(&(info->philoinfo[philo_num]), "died") == false)
 			return ;
 		info->philo_die_ornot = true;
 	}
+	pthread_mutex_unlock(&(info->timecheck));
 }
 
 bool	check_eatsatisfied(t_allinfo *info, int philonum)
@@ -55,6 +57,7 @@ void	*philo_checker(t_allinfo *info)
 		philo_num++;
 		if ((int)philo_num == info->philo_num)
 			philo_num = 0;
+		usleep(1000);
 	}
 	return (NULL);
 }

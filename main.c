@@ -40,6 +40,14 @@ int main(int argc, char *argv[])
 	if (create_samephilo(&allinfo) == false)
 		return (1);
 	allinfo.philo_die_ornot = false;
-	if (create_threads(&allinfo) == false)
-		return (1);
+	if (allinfo.eat_limit != -1)
+	{
+		if (create_threads(&allinfo) == false)
+			return (1);
+	}
+	else
+	{
+		if (create_threads_ult(&allinfo) == false)
+			return (1);
+	}
 }

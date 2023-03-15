@@ -16,6 +16,8 @@ bool	mutexinit(t_allinfo *allinfo)
 {
 	if (pthread_mutex_init(&(allinfo->write), NULL) != 0)
 		return (false);
+	if (pthread_mutex_init(&(allinfo->timecheck), NULL) != 0)
+		return (false);
 	return (true);
 }
 
@@ -30,11 +32,13 @@ bool	create_forks(t_allinfo *info)
 	fork_num = 0;
 	while (fork_num != info->philo_num)
 	{
+		pthread_mutex_lock(&(info->write));
 		if (pthread_mutex_init(&info->forks[fork_num], NULL) != 0)
 			return (false);
 		if (pthread_mutex_init(&info->status[fork_num], NULL) != 0)
 			return (false);
 		fork_num++;
+		pthread_mutex_unlock(&(info->write));
 	}
 	return (true);
 }
