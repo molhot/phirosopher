@@ -16,7 +16,7 @@ bool	mutexinit(t_allinfo *allinfo)
 {
 	if (pthread_mutex_init(&(allinfo->write), NULL) != 0)
 		return (false);
-	if (pthread_mutex_init(&(allinfo->timecheck), NULL) != 0)
+	if (pthread_mutex_init(&(allinfo->correctend), NULL) != 0)
 		return (false);
 	return (true);
 }

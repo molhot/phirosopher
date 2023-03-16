@@ -29,12 +29,14 @@ static	void	ready_philoinfo(t_allinfo *info, int argc, char **argv)
 int main(int argc, char *argv[])
 {
 	t_allinfo	allinfo;
+	// int			num;
 
 	if (arg_check(argc, argv) == false)
 		return (1);
 	ready_philoinfo(&allinfo, argc, argv);
 	if (mutexinit(&allinfo) == false)
 		return (1);
+	pthread_mutex_init(&(allinfo.timecheck), NULL);
 	if (create_forks(&allinfo) == false)
 		return (1);
 	if (create_samephilo(&allinfo) == false)
@@ -50,4 +52,11 @@ int main(int argc, char *argv[])
 		if (create_threads_ult(&allinfo) == false)
 			return (1);
 	}
+	// num = 0;
+	// while (num != allinfo.philo_num)
+	// {
+	// 	pthread_mutex_destroy(&allinfo.status[num]);
+	// 	strerror(pthread_mutex_destroy(&allinfo.forks[num]));
+	// 	num++;
+	// }
 }

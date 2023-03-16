@@ -6,19 +6,23 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 02:34:43 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/15 16:40:45 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/16 23:53:31 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../philosophers.h"
+
+
 
 void	*philolife_life(void *info_t)
 {
 	t_philo		*info;
 
 	info = (t_philo*)info_t;
+	pthread_mutex_lock(&(info->all_info->timecheck));
 	info->philo_livedstart = getnowtime();
-	while ((int)info->how_eated <= info->eat_limit)
+	pthread_mutex_unlock(&(info->all_info->timecheck));
+	while (1)
 	{
 		if (eat_drop(info, info->fork_info.l_fork, info->fork_info.r_fork) == false)
 			return (NULL);

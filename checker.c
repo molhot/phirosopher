@@ -6,7 +6,7 @@
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:38:57 by satushi           #+#    #+#             */
-/*   Updated: 2023/03/15 19:37:55 by mochitteiun      ###   ########.fr       */
+/*   Updated: 2023/03/16 23:50:03 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,27 @@
 
 void	philo_deathistrue(size_t philo_num, t_allinfo *info)
 {
+	long long	appnedtime;
+
 	pthread_mutex_lock(&(info->timecheck));
-	if ((getnowtime() - info->philoinfo[philo_num].philo_livedstart) > info->time_to_die)
+	appnedtime = info->philoinfo[philo_num].philo_livedstart;
+	pthread_mutex_unlock(&(info->timecheck));
+	if ((getnowtime() - appnedtime) > info->time_to_die)
 	{
 		if (print_action(&(info->philoinfo[philo_num]), "died") == false)
 			return ;
 		info->philo_die_ornot = true;
 	}
-	pthread_mutex_unlock(&(info->timecheck));
 }
 
 bool	check_eatsatisfied(t_allinfo *info, int philonum)
 {
-	if (info->eat_limit == (int)info->philoinfo[philonum].how_eated)
+	int	eatcount;
+
+	pthread_mutex_lock(&(info->status[philonum - 1]));
+	eatcount = (int)info->philoinfo[philonum].how_eated;
+	pthread_mutex_unlock(&(info->status[philonum - 1]));
+	if (info->eat_limit == eatcount)
 		return (true);
 	return (false);
 }

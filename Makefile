@@ -11,7 +11,7 @@ SRCS = main.c\
 
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc -g
+CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -I includes -pthread
 
