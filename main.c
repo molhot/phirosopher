@@ -26,37 +26,46 @@ static	void	ready_philoinfo(t_allinfo *info, int argc, char **argv)
 		info->eat_limit = -1;
 }
 
-int main(int argc, char *argv[])
+static	bool	makingthread(t_allinfo *allinfo)
+{
+	if (allinfo->eat_limit != -1)
+	{
+		if (create_threads(allinfo) == false)
+		{
+			free(allinfo->philoinfo);
+			return (false);
+		}
+	}
+	else
+	{
+		if (create_threads_ult(allinfo) == false)
+		{
+			free(allinfo->philoinfo);
+			return (false);
+		}
+	}
+	return (true);
+}
+
+int	main(int argc, char *argv[])
 {
 	t_allinfo	allinfo;
-	// int			num;
 
 	if (arg_check(argc, argv) == false)
 		return (1);
 	ready_philoinfo(&allinfo, argc, argv);
 	if (mutexinit(&allinfo) == false)
 		return (1);
-	pthread_mutex_init(&(allinfo.timecheck), NULL);
 	if (create_forks(&allinfo) == false)
 		return (1);
 	if (create_samephilo(&allinfo) == false)
 		return (1);
-	allinfo.philo_die_ornot = false;
-	if (allinfo.eat_limit != -1)
+	if (makingthread(&allinfo) == false)
 	{
-		if (create_threads(&allinfo) == false)
-			return (1);
+		mutex_destroy(&allinfo);
+		return (1);
 	}
-	else
-	{
-		if (create_threads_ult(&allinfo) == false)
-			return (1);
-	}
-	// num = 0;
-	// while (num != allinfo.philo_num)
-	// {
-	// 	pthread_mutex_destroy(&allinfo.status[num]);
-	// 	strerror(pthread_mutex_destroy(&allinfo.forks[num]));
-	// 	num++;
-	// }
+	mutex_destroy(&allinfo);
+	free(allinfo.philoinfo);
+	free_mutex(&allinfo);
 }

@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-static void	insert_info_tophilo(int	philonum, t_allinfo *info)
+static	void	insert_info_tophilo(int philonum, t_allinfo *info)
 {
 	((info->philoinfo)[philonum - 1]).fork_info.r_fork = philonum - 2;
 	((info->philoinfo)[philonum - 1]).fork_info.l_fork = philonum - 1;
@@ -29,7 +29,7 @@ bool	create_samephilo(t_allinfo *info)
 
 	l_f_n = 2;
 	info->philoinfo = (t_philo *)malloc(sizeof(t_allinfo) * info->philo_num);
-	if (info->philoinfo== NULL)
+	if (info->philoinfo == NULL)
 		return (false);
 	while (l_f_n != info->philo_num + 1)
 	{

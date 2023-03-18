@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getnowtime.c                                    :+:      :+:    :+:   */
+/*   behave_twofork.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 09:37:44 by mochitteiun       #+#    #+#             */
-/*   Updated: 2023/03/13 09:37:44 by mochitteiun      ###   ########.fr       */
+/*   Created: 2023/03/17 15:35:06 by mochitteiun       #+#    #+#             */
+/*   Updated: 2023/03/17 15:35:06 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-long long	getnowtime(void)
+void	unlock_allfork(t_philo *info, int l_f, int r_f)
 {
-	struct timeval	tv;
+	pthread_mutex_unlock(&info->all_info->forks[r_f]);
+	pthread_mutex_unlock(&info->all_info->forks[l_f]);
+}
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec * 0.001));
+bool	error_unlokallfork(t_philo *info, int l_f, int r_f)
+{
+	unlock_allfork(info, l_f, r_f);
+	return (false);
 }

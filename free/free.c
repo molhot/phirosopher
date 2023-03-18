@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getnowtime.c                                    :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 09:37:44 by mochitteiun       #+#    #+#             */
-/*   Updated: 2023/03/13 09:37:44 by mochitteiun      ###   ########.fr       */
+/*   Created: 2023/03/18 04:11:22 by mochitteiun       #+#    #+#             */
+/*   Updated: 2023/03/18 04:11:22 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-long long	getnowtime(void)
+void	free_mutex(t_allinfo *info)
 {
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec * 0.001));
+	free(info->forks);
+	free(info->status);
+	free(info->timecheck_same);
 }

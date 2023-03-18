@@ -4,14 +4,16 @@ SRCS = main.c\
 		arg_checker.c\
 		ready_samephiloinfo.c\
 		handling_mutex.c\
-		handling_threads.c\
-		basic_func/ft_atoi.c basic_func/print_action.c basic_func/ft_getnowtime.c\
+		make_threads/handling_threads.c make_threads/philo_utils.c make_threads/philoult_utils.c\
 		philosophers_action/philo_behavior.c philosophers_action/philo_think_eat.c\
-		checker.c
+		philosophers_action/behave_onefork.c philosophers_action/behave_twofork.c\
+		basic_func/ft_atoi.c basic_func/print_action.c basic_func/ft_getnowtime.c\
+		checker.c\
+		free/destroy_mutex.c free/free.c
 
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc
+CC = gcc -g
 
 CFLAGS = -Wall -Wextra -Werror -I includes -pthread
 

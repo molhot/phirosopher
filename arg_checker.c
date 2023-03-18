@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:37:36 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/11 22:28:02 by satushi          ###   ########.fr       */
+/*   Updated: 2023/03/17 15:16:40 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static	bool	argment_check(char *argline)
 	argline_position = 0;
 	while (argline[argline_position] != '\0')
 	{
-		if (!('0' <= argline[argline_position] && argline[argline_position] <= '9'))
+		if (!('0' <= argline[argline_position] && \
+		argline[argline_position] <= '9'))
 			return (false);
 		argline_position++;
 	}

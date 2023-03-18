@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   showerror.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satushi <sakata19991214@gmail.com>         +#+  +:+       +#+        */
+/*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:01:41 by satushi           #+#    #+#             */
-/*   Updated: 2023/01/11 21:02:20 by satushi          ###   ########.fr       */
+/*   Updated: 2023/03/17 15:27:43 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-int print_errormessage(int errornum)
+int	print_errormessage(int errornum)
 {
 	if (errornum == ERROR_ARGUMENT)
 		ft_putchar_fd("argnum is difficult\n you must write four argnum\n");

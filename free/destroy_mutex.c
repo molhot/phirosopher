@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getnowtime.c                                    :+:      :+:    :+:   */
+/*   destroy_mutex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mochitteiunon? <sakata19991214@gmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 09:37:44 by mochitteiun       #+#    #+#             */
-/*   Updated: 2023/03/13 09:37:44 by mochitteiun      ###   ########.fr       */
+/*   Created: 2023/03/18 03:06:43 by mochitteiun       #+#    #+#             */
+/*   Updated: 2023/03/18 03:06:43 by mochitteiun      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-long long	getnowtime(void)
+void	mutex_destroy(t_allinfo *info)
 {
-	struct timeval	tv;
+	int	num;
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec * 0.001));
+	num = 0;
+	pthread_mutex_destroy(&info->write);
+	pthread_mutex_destroy(&info->diecheck);
+	pthread_mutex_destroy(&info->correctend);
+	while (num != info->philo_num)
+	{
+		pthread_mutex_destroy(&info->status[num]);
+		pthread_mutex_destroy(&info->forks[num]);
+		pthread_mutex_destroy(&info->timecheck_same[num]);
+		num++;
+	}
 }

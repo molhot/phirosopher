@@ -18,27 +18,37 @@ bool	mutexinit(t_allinfo *allinfo)
 		return (false);
 	if (pthread_mutex_init(&(allinfo->correctend), NULL) != 0)
 		return (false);
+	if (pthread_mutex_init(&(allinfo->diecheck), NULL) != 0)
+		return (false);
 	return (true);
+}
+
+static	bool	freereturn(t_allinfo *info)
+{
+	free_mutex(info);
+	return (false);
 }
 
 bool	create_forks(t_allinfo *info)
 {
 	int	fork_num;
 
-	info->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->philo_num);
-	info->status = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->philo_num);
-	if (info->forks == NULL || info->status == NULL)
-		return (false);
+	info->forks = malloc(sizeof(pthread_mutex_t) * info->philo_num);
+	info->status = malloc(sizeof(pthread_mutex_t) * info->philo_num);
+	info->timecheck_same = malloc(sizeof(pthread_mutex_t) * info->philo_num);
+	if (info->forks == NULL || info->status == NULL \
+	|| info->timecheck_same == NULL)
+		return (freereturn(info));
 	fork_num = 0;
 	while (fork_num != info->philo_num)
 	{
-		pthread_mutex_lock(&(info->write));
 		if (pthread_mutex_init(&info->forks[fork_num], NULL) != 0)
-			return (false);
+			return (freereturn(info));
 		if (pthread_mutex_init(&info->status[fork_num], NULL) != 0)
-			return (false);
+			return (freereturn(info));
+		if (pthread_mutex_init(&info->timecheck_same[fork_num], NULL) != 0)
+			return (freereturn(info));
 		fork_num++;
-		pthread_mutex_unlock(&(info->write));
 	}
 	return (true);
 }
